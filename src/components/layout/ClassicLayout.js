@@ -40,11 +40,11 @@ const ClassicLayout = (props) => {
   function negative(number) {
     return number < 0;
   }
-  const company = useSelector((state) => state.auth.company);
+  const company = useSelector((state) => state?.auth?.company);
   const paymentStatus = useSelector(
-    (state) => state.auth.company.paymentStatus
+    (state) => state?.auth?.company?.paymentStatus
   );
-  const user = useSelector((state) => state.auth.user);
+  const user = useSelector((state) => state?.auth?.user);
   const newUSer = { ...user, authority: ["system.preferences"] };
 
   const diffTime = new Date(company?.trialEndDate).getTime() - Date.now();
