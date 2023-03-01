@@ -7,7 +7,6 @@ import { getLogs, filterLogs, setActivityIndex } from "../store/dataSlice";
 import { useDispatch, useSelector } from "react-redux";
 import isEmpty from "lodash/isEmpty";
 import dayjs from "dayjs";
-import ReactJson from "react-json-view";
 import SignatureCanvas from "react-signature-canvas";
 const Log = () => {
   const dispatch = useDispatch();

@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect } from "react";
-import ReactJson from "react-json-view";
 import { Field, Form, Formik } from "formik";
 import get from "lodash/get";
 import { countryList } from "constants/countries.constant";
@@ -144,12 +143,12 @@ const AddressInfomation = ({
           Asset Successfully stored{" "}
         </span>
       </button> */}
-      <ReactJson
+      {/* <ReactJson
         // collapsed={true}
         theme={"apathy"}
         iconStyle={"circle"}
         src={data?.identification}
-      />
+      /> */}
     </>
   );
 };

@@ -13,7 +13,6 @@ import {
   COMMENT_MENTION,
   ASSIGN_TICKET,
 } from "../constants";
-// import ReactJson from "react-json-view";
 // import ReactDiffViewer from "react-diff-viewer";
 const ticketStatus = {
   0: {
