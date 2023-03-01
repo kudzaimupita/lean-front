@@ -16,6 +16,12 @@ const appsRoute = [
     authority: [ADMIN, USER],
   },
   {
+    key: "app.calender",
+    path: `/app/calender`,
+    component: React.lazy(() => import("views/crm/Calendar")),
+    authority: [ADMIN, USER],
+  },
+  {
     key: "appsProject.scrumBoard",
     path: `${APP_PREFIX_PATH}/project/scrum-board`,
     component: React.lazy(() => import("views/project/ScrumBoard")),

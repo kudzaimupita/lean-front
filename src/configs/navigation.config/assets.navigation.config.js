@@ -127,6 +127,16 @@ const appsNavigationConfig = [
         subMenu: [],
       },
       {
+        key: "app.calender",
+        path: `app/calender`,
+        title: "Calender",
+        // translateKey: "nav.appsSales.fuelEntry",
+        icon: "calendar",
+        type: NAV_ITEM_TYPE_ITEM,
+        authority: [ADMIN, USER],
+        subMenu: [],
+      },
+      {
         key: "appsSales.reminders",
         path: `${APP_PREFIX_PATH}/reminders`,
         title: "Reminders",
@@ -178,6 +188,7 @@ const appsNavigationConfig = [
         authority: [ADMIN, USER],
         subMenu: [],
       },
+
       {
         key: "appsSales.reprts",
         path: `${APP_PREFIX_PATH}/metsers`,

@@ -48,9 +48,11 @@ import {
   BsChatRightTextFill,
   BsClockHistory,
   BsFillPersonLinesFill,
+  BsFillCalendar2CheckFill,
 } from "react-icons/bs";
 // BiSitemap
 const navigationIcon = {
+  calendar: <BsFillCalendar2CheckFill />,
   config: <GoSettings />,
   site: <FaSitemap />,
   help: <MdOutlineHelp />,
