@@ -14,7 +14,7 @@ import {
   ASSIGN_TICKET,
 } from "../constants";
 import ReactJson from "react-json-view";
-import ReactDiffViewer from "react-diff-viewer";
+// import ReactDiffViewer from "react-diff-viewer";
 const ticketStatus = {
   0: {
     label: "Completed",
