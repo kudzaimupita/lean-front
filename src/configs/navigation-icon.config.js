@@ -32,9 +32,11 @@ import {
 import { AiOutlineIssuesClose } from "react-icons/ai";
 import { GiPayMoney, GiOrganigram } from "react-icons/gi";
 import { TbReportAnalytics } from "react-icons/tb";
-import { FaPeopleArrows } from "react-icons/fa";
-import { GrShieldSecurity } from "react-icons/gr";
-
+import { FaPeopleArrows, FaSitemap } from "react-icons/fa";
+import { MdOutlineHelp } from "react-icons/md";
+// GoSettings
+import { GoSettings } from "react-icons/go";
+import { IoMdSettings, IoMdSpeedometer } from "react-icons/io";
 import { FcInspection, FcDataConfiguration } from "react-icons/fc";
 import {
   MdAssignmentInd,
@@ -47,8 +49,11 @@ import {
   BsClockHistory,
   BsFillPersonLinesFill,
 } from "react-icons/bs";
-
+// BiSitemap
 const navigationIcon = {
+  config: <GoSettings />,
+  site: <FaSitemap />,
+  help: <MdOutlineHelp />,
   me: <BsFillPersonLinesFill />,
   logs: <BsClockHistory />,
   config: <FcDataConfiguration />,
@@ -63,7 +68,8 @@ const navigationIcon = {
   issue: <AiOutlineIssuesClose />,
   assignment: <MdAssignmentInd />,
   inspection: <FcInspection />,
-  // chat: <HiChat />,
+  meter: <IoMdSpeedometer />,
+  settings: <IoMdSettings />,
   location: <HiLocationMarker />,
   add: <HiPlusCircle />,
   apps: <HiOutlineViewGridAdd />,
