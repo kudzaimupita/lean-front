@@ -13,7 +13,6 @@ import { AiOutlineSave } from "react-icons/ai";
 import * as Yup from "yup";
 import { storeExpenseType } from "../../../services/expenseTypeService";
 import { toast, Notification } from "components/ui";
-import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 // import Iframe from "react-iframe";
 import { values } from "lodash";
 const { useUniqueId } = hooks;

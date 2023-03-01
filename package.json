@@ -5,7 +5,6 @@
   "homepage": "./",
   "private": true,
   "dependencies": {
-    "@cyntler/react-doc-viewer": "^1.10.3",
     "@fullcalendar/daygrid": "^5.10.1",
     "@fullcalendar/interaction": "^5.10.1",
     "@fullcalendar/react": "^5.10.1",

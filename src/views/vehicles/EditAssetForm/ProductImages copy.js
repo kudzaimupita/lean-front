@@ -8,7 +8,6 @@ import { FormItem, Dialog, Upload } from "components/ui";
 import { HiEye, HiTrash } from "react-icons/hi";
 import { Field } from "formik";
 import cloneDeep from "lodash/cloneDeep";
-import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 import Schedule from "./Schedule";
 
 const da = [

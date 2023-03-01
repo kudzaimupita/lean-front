@@ -1,7 +1,7 @@
 import React, { forwardRef, useState } from "react";
 import { FormContainer, Button, hooks } from "components/ui";
 import { StickyFooter, ConfirmDialog } from "components/shared";
-import { Form, Formik,useFormikContext } from "formik";
+import { Form, Formik, useFormikContext } from "formik";
 import { useNavigate } from "react-router-dom";
 import BasicInformationFields from "./BasicInformationFields";
 import PricingFields from "./PricingFields";
@@ -16,7 +16,6 @@ import { storeVehicle } from "../../../services/vehicleService";
 import { storeDataEntry } from "../../../services/dataEntry.service";
 import { getNewCustomFieldss } from "../../../services/customFieldService";
 import { toast, Notification } from "components/ui";
-import DocViewer, { DocViewerRenderers } from "@cyntler/react-doc-viewer";
 import { init } from "i18next";
 // import Iframe from "react-iframe";
 // import { values } from "lodash";
@@ -133,8 +132,6 @@ const ProductForm = forwardRef((props, ref) => {
   const { type, initialData, onFormSubmit, onDiscard, onDelete } = props;
   console.log(initialData);
 
-
-
   // console.log(obj)
   const newId = useUniqueId("product-");
   const navigate = useNavigate();
@@ -166,21 +163,28 @@ const ProductForm = forwardRef((props, ref) => {
 
   function groupItemBy(array, property) {
     var hash = {},
-        props = property.split('.');
+      props = property.split(".");
     for (var i = 0; i < array?.length; i++) {
-        var key = props.reduce(function(acc, prop) {
-            return acc && acc[prop];
-        }, array[i]);
-        if (!hash[key]) hash[key] = [];
-        hash[key].push(array[i]);
+      var key = props.reduce(function (acc, prop) {
+        return acc && acc[prop];
+      }, array[i]);
+      if (!hash[key]) hash[key] = [];
+      hash[key].push(array[i]);
     }
     return hash;
-}
-  const newFields=Object.keys( groupItemBy(initialData.newVehicleType?.fields,'category.name')).map((item)=>{
-    return {name:item,fields:groupItemBy(initialData.newVehicleType?.fields,'category.name')[item]}
-  })
+  }
+  const newFields = Object.keys(
+    groupItemBy(initialData.newVehicleType?.fields, "category.name")
+  ).map((item) => {
+    return {
+      name: item,
+      fields: groupItemBy(initialData.newVehicleType?.fields, "category.name")[
+        item
+      ],
+    };
+  });
 
-  console.log(newFields)
+  console.log(newFields);
   const docs = [
     {
       uri: "https://baboon-images.s3.amazonaws.com/vehicle-1673088466104-imageCover.jpeg",
@@ -208,11 +212,7 @@ const ProductForm = forwardRef((props, ref) => {
         innerRef={ref}
         initialValues={{
           ...initialData,
-         
 
-
-
-          
           tags: initialData?.tags
             ? initialData.tags.map((value) => ({ label: value, value }))
             : [],
@@ -221,18 +221,18 @@ const ProductForm = forwardRef((props, ref) => {
           setSubmitting(true);
           const formData = cloneDeep(values);
           const form = jsonToFormData(formData);
-          console.log(values)
+          console.log(values);
           const fields = Object.keys(values)
-          .map((field, i) => {
-            if (field?.split("-")[1]) {
-              return {
-                id: field?.split("-")[1],
-                value: values[field],
-              };
-            }
-            return;
-          })
-          .filter((item) => item);
+            .map((field, i) => {
+              if (field?.split("-")[1]) {
+                return {
+                  id: field?.split("-")[1],
+                  value: values[field],
+                };
+              }
+              return;
+            })
+            .filter((item) => item);
 
           const obj = {
             fields,
@@ -260,8 +260,6 @@ const ProductForm = forwardRef((props, ref) => {
               setSubmitting(false);
               console.log(result.data);
               if (!values.id) navigate(`/app/vehicles/edit/${result.data._id}`);
-
-       
             })
             .catch((errors) =>
               errors.map(
@@ -277,23 +275,21 @@ const ProductForm = forwardRef((props, ref) => {
             <FormContainer>
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
                 <div className="lg:col-span-2">
-    
                   <BasicInformationFields
                     touched={touched}
                     errors={errors}
                     values={values}
                   />
-                              {newFields?.map((field) => (
-          <div className="col-span-1">
-   <PricingFields
-                    touched={touched}
-                    errors={errors}
-                    values={values}
-                    field={field}
-                  />
-          </div>
-        ))}
-               
+                  {newFields?.map((field) => (
+                    <div className="col-span-1">
+                      <PricingFields
+                        touched={touched}
+                        errors={errors}
+                        values={values}
+                        field={field}
+                      />
+                    </div>
+                  ))}
                 </div>
                 <div className="lg:col-span-1">
                   <ProductImages
@@ -302,7 +298,6 @@ const ProductForm = forwardRef((props, ref) => {
                     errors={errors}
                     values={values}
                   />
-             
                 </div>
               </div>
               <StickyFooter
