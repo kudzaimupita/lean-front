@@ -2,7 +2,7 @@
   "name": "elstar",
   "version": "1.1.6",
   "main": "public/electron.js",
-  "homepage": "./",
+  "homepage": "/",
   "private": true,
   "dependencies": {
     "@fullcalendar/daygrid": "^5.10.1",
