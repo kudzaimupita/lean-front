@@ -13,7 +13,7 @@ import {
   COMMENT_MENTION,
   ASSIGN_TICKET,
 } from "../constants";
-import ReactJson from "react-json-view";
+// import ReactJson from "react-json-view";
 // import ReactDiffViewer from "react-diff-viewer";
 const ticketStatus = {
   0: {
@@ -117,12 +117,12 @@ const Event = ({ data, compact }) => {
 
             <Badge className={ticketStatus[0].bgClass} />
           </div>
-          <ReactJson
+          {/* <ReactJson
             collapsed={true}
             theme={"apathy"}
             iconStyle={"circle"}
             src={data.payload}
-          />
+          /> */}
           {/* {data.oldPayload && (
             <div style={{ maxWidth: "100px" }}>
               {" "}
