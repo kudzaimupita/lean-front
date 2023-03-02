@@ -51,8 +51,10 @@ const ClassicLayout = (props) => {
   const trialExpired = negative(diffTime / 8.64e7);
 
   useEffect(() => {
-    if (trialExpired && paymentStatus !== "paid") {
-      // <Navigate to="/system/preferences/billing" />;
+    if (trialExpired && paymentStatus === "onTrial") {
+      navigate("/system/preferences/billing");
+      dispatch(setUser(newUSer));
+    } else if (paymentStatus === "failed") {
       navigate("/system/preferences/billing");
       dispatch(setUser(newUSer));
     }
