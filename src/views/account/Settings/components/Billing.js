@@ -19,6 +19,8 @@ import isEmpty from "lodash/isEmpty";
 import { apiGetAccountSettingBillingData } from "services/AccountServices";
 import { checkout, updateSubscription } from "services/companyService";
 import { getCustomer } from "services/AuthService";
+import { setCompany } from "../../../../store/auth/companySlice";
+import { setUser } from "../../../../store/auth/userSlice";
 import { useNavigate } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -75,13 +77,31 @@ const Billing = () => {
     },
   ];
   const [customer, setCustomer] = useState({});
-
+  const dispatch = useDispatch();
   const email = useSelector((state) => state.auth.user?.email);
   const getNewCustomer = () => {
     setLoadingData(true);
     getCustomer(email).then((data) => {
       setCustomer(data.data.user);
       setLoadingData(false);
+      console.log();
+      dispatch(setCompany(data?.data?.user.company));
+      if (data?.data?.user.company.paymentStatus === "paid") {
+        dispatch(
+          setUser(
+            {
+              ...data?.data?.user,
+              // authority: ["USER", "admin", "user"],
+              userName: data?.data?.user.name,
+            } || {
+              avatar: "",
+              userName: "Anonymous",
+              authority: ["USER", "admin", "user"],
+              email: "",
+            }
+          )
+        );
+      }
     });
     //   .catch(setLoadingData(false));
   };
@@ -197,10 +217,15 @@ const Billing = () => {
       updateSubscription({
         subscriptionId: customer?.stripeCustomer?.subscriptions[0]?.id,
         price: priceId,
-      }).then(() => {
-        setLoadingData(false);
-        getNewCustomer();
-      });
+      })
+        .then(() => {
+          setLoadingData(false);
+          getNewCustomer();
+        })
+        .catch(() => {
+          setLoadingData(false);
+          getNewCustomer();
+        });
     }
   };
 
