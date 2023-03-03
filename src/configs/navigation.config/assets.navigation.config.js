@@ -174,9 +174,32 @@ const appsNavigationConfig = [
         title: "Events",
         // translateKey: "nav.appsSales.fuelEntry",
         icon: "apps",
-        type: NAV_ITEM_TYPE_ITEM,
+        type: NAV_ITEM_TYPE_COLLAPSE,
         authority: [ADMIN, USER],
-        subMenu: [],
+        subMenu: [
+          {
+            key: "appsSalefrs.service",
+            path: `${APP_PREFIX_PATH}/service
+          `,
+            title: "Events",
+            // translateKey: "nav.appsSales.fuelEntry",
+            icon: "apps",
+            type: NAV_ITEM_TYPE_COLLAPSE,
+            authority: [ADMIN, USER],
+            subMenu: [],
+          },
+          {
+            key: "appsSalerrfs.service",
+            path: `${APP_PREFIX_PATH}/service
+          `,
+            title: "Events",
+            // translateKey: "nav.appsSales.fuelEntry",
+            icon: "apps",
+            type: NAV_ITEM_TYPE_COLLAPSE,
+            authority: [ADMIN, USER],
+            subMenu: [],
+          },
+        ],
       },
       {
         key: "appsSales.meters",

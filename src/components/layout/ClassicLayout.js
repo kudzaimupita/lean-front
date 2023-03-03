@@ -60,6 +60,7 @@ const ClassicLayout = (props) => {
     }
   }, []);
 
+  console.log(trialExpired);
   const daysLeftOnTrial = Math.floor(diffTime / 8.64e7);
   return (
     <div className="app-layout-classic flex flex-auto flex-col">
@@ -67,13 +68,54 @@ const ClassicLayout = (props) => {
         <SideNav />
 
         <div className="flex flex-col flex-auto min-h-screen min-w-0 relative w-full">
-          <Alert closable={true} className="" type="danger" showIcon>
-            {trialExpired
-              ? "Your trial is expired. Please upgrade to continue"
-              : `Thank you for using Baboon. You have ${daysLeftOnTrial} days left on
+          {/* {paymentStatus === "paid" && trialExpired ? (
+            <></>
+          ) : (
+            <>
+              <Alert closable={true} className="" type="danger" showIcon>
+                {trialExpired && paymentStatus !== "paid"
+                  ? "Your trial is expired. Please upgrade to continue"
+                  : `Thank you for using Baboon. You have ${daysLeftOnTrial} days left on
             your trial !`}
-            <span className="underline font-bold"> Upgrade your plan</span>
-          </Alert>
+                <span className="underline font-bold"> Upgrade your plan</span>
+              </Alert>
+            </>
+          )} */}
+
+          {paymentStatus === "failed" ? (
+            <>
+              {" "}
+              <Alert closable={true} className="" type="danger" showIcon>
+                Account on hold, please make payment to continue
+                <span className="underline font-bold"> Upgrade your plan</span>
+              </Alert>
+            </>
+          ) : (
+            <></>
+          )}
+          {paymentStatus === "onTrial" && trialExpired ? (
+            <>
+              {" "}
+              <Alert closable={true} className="" type="danger" showIcon>
+                Trial expired, please make payment to continue
+                <span className="underline font-bold"> Upgrade your plan</span>
+              </Alert>
+            </>
+          ) : (
+            <></>
+          )}
+          {paymentStatus === "onTrial" && !trialExpired ? (
+            <>
+              {" "}
+              <Alert closable={true} className="" type="info" showIcon>
+                Thank you for using Baboon. You have {daysLeftOnTrial} days left
+                on your trial !
+                <span className="underline font-bold"> Upgrade your plan</span>
+              </Alert>
+            </>
+          ) : (
+            <></>
+          )}
           <Header
             className="shadow dark:shadow-2xl"
             headerStart={<HeaderActionsStart />}

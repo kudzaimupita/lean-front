@@ -37,7 +37,7 @@ function useAuth() {
             navigate("/welcome");
           } else if (resp.data?.user?.isOrgSetup || resp.data?.user?.company) {
             dispatch(onSignInSuccess(resp.data?.tokens?.access?.token));
-            dispatch(setCompany(resp.data?.user.company));
+            dispatch(setCompany(resp.data?.user?.company));
             dispatch(setSite(resp?.data?.user?.company?.sites[0]));
             dispatch(
               setUser(
