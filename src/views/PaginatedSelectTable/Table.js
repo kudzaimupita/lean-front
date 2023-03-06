@@ -24,12 +24,13 @@ const Table = ({
 }) => {
   const dispatch = useDispatch();
   const { pageIndex, pageSize, sort, query, total } = useSelector(
-    (state) => state.paginatedSelect.data.tableData
+    (state) => state?.paginatedSelect?.data?.tableData
   );
-  const loading = useSelector((state) => state.paginatedSelect.data.loading);
-  const data = useSelector((state) => state.paginatedSelect.data.productList);
+  const loading = useSelector((state) => state.paginatedSelect?.data?.loading);
+  const data = useSelector((state) => state.paginatedSelect?.data?.productList);
 
   useEffect(() => {
+    console.log();
     fetchData();
   }, [pageIndex, pageSize, sort]);
 

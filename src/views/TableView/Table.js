@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useCallback } from "react";
+import React, { useEffect, useMemo, useCallback, useState } from "react";
 import { DataTable } from "components/shared";
 import { HiOutlinePencil, HiOutlineTrash } from "react-icons/hi";
 
@@ -81,9 +81,41 @@ const Table = ({
   const loading = useSelector((state) => state.dataList.data.loading);
   const data = useSelector((state) => state.dataList.data.productList);
 
+  const [cols, setCols] = useState([
+    ...newColumns,
+    {
+      Header: "",
+      id: "action",
+      accessor: (row) => row,
+      Cell: (props) => (
+        <ActionColumn
+          showEdit={showEdit}
+          resource={resource}
+          row={props.row.original}
+          editRoute={editRoute}
+        />
+      ),
+    },
+  ]);
   useEffect(() => {
     fetchData();
-  }, [pageIndex, pageSize, sort]);
+    setCols([
+      ...newColumns,
+      {
+        Header: "",
+        id: "action",
+        accessor: (row) => row,
+        Cell: (props) => (
+          <ActionColumn
+            showEdit={showEdit}
+            resource={resource}
+            row={props.row.original}
+            editRoute={editRoute}
+          />
+        ),
+      },
+    ]);
+  }, [pageIndex, pageSize, sort, filter]);
 
   const tableData = useMemo(
     () => ({ pageIndex, pageSize, sort, query, total }),
@@ -185,7 +217,7 @@ const Table = ({
 
   return (
     <>
-      {!loading && data.length === 0 ? (
+      {!loading && false ? (
         <div className="text-center">
           <svg
             className="mx-auto h-12 w-12 text-gray-400"
@@ -221,7 +253,7 @@ const Table = ({
       ) : (
         <DataTable
           selectable={showSelect}
-          columns={columns}
+          columns={cols}
           data={data}
           skeletonAvatarColumns={[0]}
           skeletonAvatarProps={{ className: "rounded-sm" }}

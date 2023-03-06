@@ -59,7 +59,7 @@ const TableTools = ({ deleteMethod, dataMethod, addNewItemButton }) => {
   return (
     <>
       {" "}
-      {!loading && data.length !== 0 && (
+      {!loading && false !== 0 && (
         <div className="flex flex-col lg:flex-row lg:items-center gap-2">
           {selectedRows?.length > 0 && (
             <BatchDeleteButton

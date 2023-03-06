@@ -11,7 +11,7 @@ const unauthorizedCode = [401];
 
 const BaseService = axios.create({
   timeout: 60000,
-  baseURL: "https://05qc9nufsi.execute-api.us-east-1.amazonaws.com/v1",
+  baseURL: "http://localhost:5000/v1",
 });
 
 BaseService.interceptors.request.use(

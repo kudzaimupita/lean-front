@@ -8,18 +8,22 @@ import { ADMIN, USER } from "constants/roles.constant";
 import { HiPencilAlt, HiOutlineTrash, HiArrowCircleLeft } from "react-icons/hi";
 import store, { persistor } from "../../store";
 
-const resources = store.getState()?.theme?.resources?.map((resource) => {
-  return {
-    key: "appsSales.dashboard",
-    path: `${APP_PREFIX_PATH}/${resource.route}`,
-    title: resource.name,
-    // translateKey: "nav.appsSales.fuelEntry",
-    icon: resource.icon,
-    type: NAV_ITEM_TYPE_ITEM,
-    authority: [ADMIN, USER],
-    subMenu: [],
-  };
-});
+const resources = store
+  .getState()
+  ?.auth?.company?.collections?.map((resource) => {
+    if (resource.title) {
+      return {
+        key: resource.name,
+        path: `/app/${resource.name}`,
+        title: resource.title,
+        // translateKey: "nav.appsSales.fuelEntry",
+        icon: resource.icon,
+        type: NAV_ITEM_TYPE_ITEM,
+        authority: [ADMIN, USER],
+        subMenu: [],
+      };
+    }
+  });
 
 const appsNavigationConfig = [
   {
@@ -31,7 +35,7 @@ const appsNavigationConfig = [
     type: NAV_ITEM_TYPE_TITLE,
     authority: [ADMIN, USER],
     subMenu: [
-      // ...resources,
+      ...resources,
       {
         key: "appsSales.dashboard",
         path: `${APP_PREFIX_PATH}/dashboard`,
@@ -176,42 +180,8 @@ const appsNavigationConfig = [
         icon: "apps",
         type: NAV_ITEM_TYPE_COLLAPSE,
         authority: [ADMIN, USER],
-        subMenu: [
-          {
-            key: "appsSalefrs.service",
-            path: `${APP_PREFIX_PATH}/service
-          `,
-            title: "Events",
-            // translateKey: "nav.appsSales.fuelEntry",
-            icon: "apps",
-            type: NAV_ITEM_TYPE_COLLAPSE,
-            authority: [ADMIN, USER],
-            subMenu: [],
-          },
-          {
-            key: "appsSalerrfs.service",
-            path: `${APP_PREFIX_PATH}/service
-          `,
-            title: "Events",
-            // translateKey: "nav.appsSales.fuelEntry",
-            icon: "apps",
-            type: NAV_ITEM_TYPE_COLLAPSE,
-            authority: [ADMIN, USER],
-            subMenu: [],
-          },
-        ],
+        subMenu: [...resources],
       },
-      {
-        key: "appsSales.meters",
-        path: `${APP_PREFIX_PATH}/meters`,
-        title: "Meters",
-        // translateKey: "nav.appsSales.fuelEntry",
-        icon: "meter",
-        type: NAV_ITEM_TYPE_ITEM,
-        authority: [ADMIN, USER],
-        subMenu: [],
-      },
-
       {
         key: "appsSales.reprts",
         path: `${APP_PREFIX_PATH}/metsers`,

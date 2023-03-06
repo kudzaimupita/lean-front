@@ -128,19 +128,22 @@ const ProductList = () => {
               Custom Field Categories
             </TabNav>
             <TabNav value="tab3" icon={<HiOutlineUser />}>
-              Expense Types
-            </TabNav>
-            <TabNav value="tab4" icon={<HiOutlineUser />}>
-              Checklists
-            </TabNav>
-            <TabNav value="tab5" icon={<HiOutlineUser />}>
-              Departments
-            </TabNav>
-            <TabNav value="tab6" icon={<HiOutlineUser />}>
               Sites
             </TabNav>
+            <TabNav value="tab4" icon={<HiOutlineUser />}>
+              Events
+            </TabNav>
+            <TabNav value="tab5" icon={<HiOutlineUser />}>
+              Meters
+            </TabNav>
             <TabNav value="tab6" icon={<HiOutlineUser />}>
-              Fluid UI
+              Configure Dashboard
+            </TabNav>
+            <TabNav value="tab6" icon={<HiOutlineUser />}>
+              Depreciation Tools
+            </TabNav>
+            <TabNav value="tab6" icon={<HiOutlineUser />}>
+              Sidebar Views
             </TabNav>
           </TabList>
           <div className="p-4">

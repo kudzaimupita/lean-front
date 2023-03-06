@@ -1,8 +1,33 @@
 import React from "react";
 import { APP_PREFIX_PATH } from "constants/route.constant";
 import { ADMIN, USER } from "constants/roles.constant";
+import store, { persistor } from "../../store";
+
+const listResources = store
+  .getState()
+  ?.auth?.company?.collections?.map((resource) => {
+    return {
+      key: resource.name,
+      path: `/app/${resource.name}`,
+      component: React.lazy(() => import("views/events/listView")),
+      authority: [ADMIN, USER],
+    };
+  });
+
+const addResources = store
+  .getState()
+  ?.auth?.company?.collections?.map((resource) => {
+    return {
+      key: resource.name,
+      path: `/app/add/${resource.name}`,
+      component: React.lazy(() => import("views/events/form")),
+      authority: [ADMIN, USER],
+    };
+  });
 
 const appsRoute = [
+  ...listResources,
+  ...addResources,
   {
     key: "appsProject.dashboard",
     path: `${APP_PREFIX_PATH}/project/dashboard`,
