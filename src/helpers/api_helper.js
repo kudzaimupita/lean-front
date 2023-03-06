@@ -8,7 +8,7 @@ import { Card, Avatar, Button, Notification, toast } from "components/ui";
 // import store from "../store";
 import { onSignOutSuccess } from "../store/auth/sessionSlice";
 
-const API_URL = "http://localhost:5000/v1";
+const API_URL = "https://05qc9nufsi.execute-api.us-east-1.amazonaws.com/v1";
 
 const axiosApi = axios.create({
   baseURL: API_URL,
